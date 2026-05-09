@@ -12,13 +12,117 @@
 
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="index.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/animations.css" />
   <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
 
-  
+  <!-- ── PAGE WRAPPER ── -->
+  <div class="main_section">
+
+    <!-- ── HEADER ── -->
+    <header class="header">
+      <div class="header__brand">
+      
+        <h1 class="header__title">Smart<em>Do</em>App</h1>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <span class="theme-toggle__icon" id="themeIcon">☽</span>
+      </button>
+    </header>
+
+    <!-- ── HERO STATS BAR ── -->
+    <section class="stats-bar" aria-label="Task statistics">
+      <div class="stat">
+        <span class="stat__value" id="statTotal">0</span>
+        <span class="stat__label">Total</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat__value" id="statPending">0</span>
+        <span class="stat__label">Pending</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat__value" id="statDone">0</span>
+        <span class="stat__label">Done</span>
+      </div>
+
+      <!-- Circular Progress -->
+      <div class="progress_section" aria-label="Completion progress">
+        <svg class="progress-ring" viewBox="0 0 44 44">
+          <circle class="progress-ring__bg" cx="22" cy="22" r="18"/>
+          <circle class="progress-ring__fill" id="progressCircle" cx="22" cy="22" r="18"
+            stroke-dasharray="113.1"
+            stroke-dashoffset="113.1"/>
+        </svg>
+        <span class="progress-ring__pct" id="progressPct">0%</span>
+      </div>
+    </section>
+
+    <!-- ── ADD TASK FORM ── -->
+    <section class="addTask_section">
+      <div class="add-form" role="form" aria-label="Add new task">
+        <input
+          type="text"
+          class="add-form__input"
+          id="taskInput"
+          placeholder="Add a new task…"
+          maxlength="120"
+          autocomplete="off"
+          aria-label="Task description"
+        />
+        <button class="add-form__btn" id="addBtn" aria-label="Add task">
+          <span>+</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ── CONTROLS: SEARCH + FILTERS ── -->
+    <section class="controls">
+      <!-- Search -->
+      <div class="search-wrap">
+        <span class="search-wrap__icon">⌕</span>
+        <input
+          type="search"
+          class="search-wrap__input"
+          id="searchInput"
+          placeholder="Search tasks…"
+          aria-label="Search tasks"
+        />
+      </div>
+
+      <!-- Filter Tabs -->
+      <nav class="filter-tabs" role="tablist" aria-label="Filter tasks">
+        <button class="filter-tab filter-tab--active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-tab" data-filter="pending" role="tab" aria-selected="false">Pending</button>
+        <button class="filter-tab" data-filter="completed" role="tab" aria-selected="false">Completed</button>
+      </nav>
+    </section>
+
+    <!-- ── TASK LIST ── -->
+    <main class="task-list">
+      <ul class="task-list" id="taskList" aria-label="Task list" aria-live="polite">
+        <!-- Tasks injected here by JS -->
+      </ul>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="emptyState" hidden>
+        <span class="empty-state__icon">◎</span>
+        <p class="empty-state__msg">Nothing here yet.<br/>Add your first task above!</p>
+      </div>
+    </main>
+
+    <!-- ── FOOTER ── -->
+    <footer class="footer">
+      <button class="footer__clear-btn" id="clearCompleted">Clear completed</button>
+      <span class="footer__tip">Press <kbd>Enter</kbd> to add</span>
+    </footer>
+
+  </div><!-- /main_section -->
+
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
