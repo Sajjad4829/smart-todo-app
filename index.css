@@ -188,3 +188,56 @@ kbd {
   font-weight: 500;
   color: var(--clr-text-2);
 }
+
+
+/* responsive css */
+@media (min-width: 600px) {
+  .app-wrapper {
+    padding: var(--space-10) var(--space-8) var(--space-10);
+  }
+
+  .controls {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .search-wrap {
+    flex: 1;
+    max-width: 260px;
+  }
+}
+
+/* ── Desktop card ── */
+@media (min-width: 600px) {
+  .app-wrapper {
+    margin-inline: auto;
+    padding-block: 60px;
+  }
+}
+
+/* ── Small phones ── */
+@media (max-width: 380px) {
+  .stats-bar {
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .stat__value { font-size: var(--text-lg); }
+
+  .filter-tabs {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .filter-tab {
+    flex: 1;
+    text-align: center;
+    padding: var(--space-2) var(--space-2);
+  }
+}
+
+/* ── Touch: always show delete on mobile ── */
+@media (hover: none) {
+  .task-delete { opacity: 1; }
+}
