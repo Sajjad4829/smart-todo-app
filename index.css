@@ -1,6 +1,93 @@
-/* ── layout.css ─────────────────────────────────────────────
-   Page scaffold & structural layout
-──────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Palette ── */
+  --clr-bg:          #F5F3EE;       /* warm off-white */
+  --clr-surface:     #FFFFFF;
+  --clr-surface-2:   #EFECE5;
+  --clr-border:      #E0DDD5;
+  --clr-border-soft: #EAE7DF;
+
+  --clr-text:        #1A1916;
+  --clr-text-2:      #6B6860;
+  --clr-text-3:      #A09D97;
+
+  --clr-accent:      #E8602C;       /* warm terracotta */
+  --clr-accent-hov:  #D4512A;
+  --clr-accent-pale: #FBE9E2;
+
+  --clr-done:        #3B8C6E;       /* sage green */
+  --clr-done-pale:   #E4F2EC;
+
+  --clr-delete:      #C0392B;
+  --clr-delete-pale: #FDEDED;
+
+  /* ── Typography ── */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+
+  --text-xs:   0.70rem;
+  --text-sm:   0.82rem;
+  --text-base: 1rem;
+  --text-lg:   1.15rem;
+  --text-xl:   1.4rem;
+  --text-2xl:  2rem;
+
+  /* ── Spacing ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+
+  /* ── Radius ── */
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+  --radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-card: 0 2px 12px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
+  --shadow-lift: 0 8px 24px rgba(0,0,0,.10), 0 2px 6px rgba(0,0,0,.06);
+  --shadow-inset: inset 0 1px 3px rgba(0,0,0,.06);
+
+  /* ── Transitions ── */
+  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:   cubic-bezier(0.4, 0, 1, 1);
+  --dur-fast:  160ms;
+  --dur-base:  240ms;
+  --dur-slow:  380ms;
+}
+
+/* ── Dark theme ─────────────────────────────────────────── */
+[data-theme="dark"] {
+  --clr-bg:          #131210;
+  --clr-surface:     #1E1C19;
+  --clr-surface-2:   #252320;
+  --clr-border:      #302E2A;
+  --clr-border-soft: #2A2825;
+
+  --clr-text:        #F0EDE6;
+  --clr-text-2:      #9D9A93;
+  --clr-text-3:      #5E5C57;
+
+  --clr-accent:      #F07040;
+  --clr-accent-hov:  #E8602C;
+  --clr-accent-pale: #2D1F18;
+
+  --clr-done:        #4AAD8A;
+  --clr-done-pale:   #162920;
+
+  --clr-delete:      #E05555;
+  --clr-delete-pale: #2B1515;
+
+  --shadow-card: 0 2px 12px rgba(0,0,0,.28), 0 1px 3px rgba(0,0,0,.18);
+  --shadow-lift: 0 8px 24px rgba(0,0,0,.40), 0 2px 6px rgba(0,0,0,.24);
+}
+
 
 body {
   background-color: var(--clr-bg);
@@ -189,6 +276,115 @@ kbd {
   color: var(--clr-text-2);
 }
 
+
+
+/* Clear button css */
+
+
+──────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  min-height: 100dvh;
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+ul, ol { list-style: none; }
+
+button { cursor: pointer; border: none; background: none; font: inherit; }
+
+input, textarea { font: inherit; border: none; outline: none; background: none; }
+
+img, svg { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+/* Animations */
+
+
+/* Task card entrance */
+@keyframes task-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Task card exit */
+@keyframes task-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    max-height: 200px;
+    margin-bottom: 0;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(30px) scale(0.96);
+    max-height: 0;
+    margin-bottom: -12px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* Generic fade in */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* Slow spin for header icon */
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+/* Gentle pulse for empty state icon */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50%       { transform: scale(1.12); opacity: 1; }
+}
+
+/* Stat value pop on update */
+@keyframes stat-pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.25); color: var(--clr-accent); }
+  100% { transform: scale(1); }
+}
+
+.stat-pop {
+  animation: stat-pop 0.3s var(--ease-out);
+}
+
+/* Shake for empty-input error */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+.shake {
+  animation: shake 0.35s var(--ease-out);
+  border-color: var(--clr-delete) !important;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 
 /* responsive css */
 @media (min-width: 600px) {
